@@ -2,6 +2,7 @@ import json
 import time
 import logging
 import os
+import random
 
 import requests
 import feedparser
@@ -57,40 +58,52 @@ def send_telegram(token, chat_id, text):
     ).raise_for_status()
 
 
-REPOS = {
-    "scraper": ("a monitoring bot that scrapes a source and sends instant alerts",
-                "https://github.com/Qwirlex/crypto-price-alert-bot"),
-    "api": ("a Flask service that connects APIs and forwards events between apps",
-            "https://github.com/Qwirlex/webhook-relay"),
-    "bot": ("a Telegram alert bot that watches a feed and pings on new matches",
-            "https://github.com/Qwirlex/crypto-price-alert-bot"),
+OPENERS = [
+    "Hi, I read through your post and it lines up well with what I do.",
+    "Hi, this one is right up my alley.",
+    "Hi, I can take this on and get it done without fuss.",
+    "Hi, this looks like a clean fit for me.",
+]
+
+PITCH = {
+    "web": "For \"{title}\", I will build the web app with tidy, responsive code, wire up the parts you need, and keep the interface simple and quick.",
+    "scraper": "For \"{title}\", I will write a steady scraper that grabs exactly the data you want and exports it your way, with polite rate limits so it keeps running.",
+    "api": "For \"{title}\", I will connect the APIs and get the data moving between your tools, adding webhooks or scheduled jobs where they fit.",
+    "bot": "For \"{title}\", I will build the bot end to end, hook it up to Telegram or Discord, and keep the settings easy for you to change.",
+    "automation": "For \"{title}\", I will automate the repetitive part with a clean script that just runs, so you stop doing it by hand.",
 }
 
-KINDS = {
-    "scraper": "web scrapers",
-    "api": "API integrations and automations",
-    "bot": "bots and automations",
+PROOF = {
+    "web": "github.com/Qwirlex",
+    "scraper": "github.com/Qwirlex/crypto-price-alert-bot",
+    "api": "github.com/Qwirlex/webhook-relay",
+    "bot": "github.com/Qwirlex/crypto-price-alert-bot",
+    "automation": "github.com/Qwirlex/webhook-relay",
 }
 
 
 def detect_kind(blob):
+    if any(w in blob for w in ("react", "next.js", "nextjs", "web app", "webapp", "website", "frontend", "full stack", "full-stack")):
+        return "web"
     if "scrap" in blob:
         return "scraper"
-    if "api" in blob or "webhook" in blob or "integration" in blob:
+    if any(w in blob for w in ("api", "webhook", "integration", "integrate")):
         return "api"
-    return "bot"
+    if any(w in blob for w in ("telegram", "discord", "bot")):
+        return "bot"
+    return "automation"
 
 
 def make_proposal(entry):
-    blob = (entry.get("title", "") + " " + entry.get("summary", "")).lower()
+    title = entry.get("title", "your project").strip()
+    blob = (title + " " + entry.get("summary", "")).lower()
     kind = detect_kind(blob)
-    line, repo = REPOS[kind]
+    pitch = PITCH[kind].format(title=title)
     proposal = (
-        f"Hi, this is a good fit for me. I build clean Python {KINDS[kind]} and can get this done "
-        f"with documented code and a short setup guide, so it is easy to run and hand over. "
-        f"I recently built {line}, which is close to what you need. I keep things simple, deliver fast, "
-        f"and stay in touch the whole way. You can see similar projects here: {repo}. "
-        f"Tell me your exact requirements and I will confirm the timeline and a fixed price."
+        f"{random.choice(OPENERS)} {pitch} "
+        f"You get documented code and a short setup guide, quick delivery, and I stay in touch the whole way. "
+        f"You can see some of my work here: {PROOF[kind]}. "
+        f"Tell me a bit more about what you have in mind and I will confirm a timeline and a fixed price."
     )
     return proposal[:1000]
 
