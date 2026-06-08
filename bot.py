@@ -59,18 +59,18 @@ def send_telegram(token, chat_id, text):
 
 
 OPENERS = [
-    "Hi, I read through your post and it lines up well with what I do.",
-    "Hi, this one is right up my alley.",
-    "Hi, I can take this on and get it done without fuss.",
-    "Hi, this looks like a clean fit for me.",
+    "Hi, I can help with this.",
+    "Hi, this is the kind of work I do a lot.",
+    "Hi, I can take this on.",
+    "Hi, this looks like a good fit for me.",
 ]
 
 PITCH = {
-    "web": "For {title}, I will build the web app with tidy, responsive code, wire up the parts you need, and keep the interface simple and quick.",
-    "scraper": "For {title}, I will write a steady scraper that grabs exactly the data you want and exports it your way, with polite rate limits so it keeps running.",
-    "api": "For {title}, I will connect the APIs and get the data moving between your tools, adding webhooks or scheduled jobs where they fit.",
-    "bot": "For {title}, I will build the bot end to end, hook it up to Telegram or Discord, and keep the settings easy for you to change.",
-    "automation": "For {title}, I will automate the repetitive part with a clean script that just runs, so you stop doing it by hand.",
+    "web": "For {title}, I will build the web app with clean code that works on phone and desktop, and keep it simple to use.",
+    "scraper": "For {title}, I will build a scraper that pulls the exact data you want and saves it the way you need, and runs without getting blocked.",
+    "api": "For {title}, I will connect the tools and APIs so the data moves between them on its own.",
+    "bot": "For {title}, I will build the bot, connect it to Telegram or Discord, and make it easy for you to change the settings.",
+    "automation": "For {title}, I will write a simple script that does the repetitive work for you, so you do not have to do it by hand.",
 }
 
 PROOF = {
@@ -101,9 +101,9 @@ def make_proposal(entry):
     pitch = PITCH[kind].format(title=title)
     proposal = (
         f"{random.choice(OPENERS)} {pitch} "
-        f"You get documented code and a short setup guide, quick delivery, and I stay in touch the whole way. "
+        f"You get clean code and a short guide on how to run it, fast delivery, and I answer quickly while we work. "
         f"You can see some of my work here: {PROOF[kind]}. "
-        f"Tell me a bit more about what you have in mind and I will confirm a timeline and a fixed price."
+        f"Send me a few more details and I will get started."
     )
     return proposal[:1000]
 
