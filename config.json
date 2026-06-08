@@ -1,0 +1,10 @@
+{
+  "telegram": {
+    "bot_token": "PUT_YOUR_BOT_TOKEN_HERE",
+    "chat_id": "PUT_YOUR_CHAT_ID_HERE"
+  },
+  "poll_interval_seconds": 300,
+  "rss_url": "https://www.freelancer.com/rss.xml",
+  "include_keywords": ["python", "bot", "scraper", "scraping", "automation", "api", "telegram", "discord", "webhook", "script", "integration"],
+  "exclude_keywords": ["lead generation", "data entry", "linkedin", "virtual assistant", "video edit", "logo", "graphic design", "seo", "content writing", "email scrap", "followers", "instagram"]
+}
