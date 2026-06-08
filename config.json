@@ -5,6 +5,6 @@
   },
   "poll_interval_seconds": 300,
   "rss_url": "https://www.freelancer.com/rss.xml",
-  "include_keywords": ["python", "bot", "scraper", "scraping", "automation", "api", "telegram", "discord", "webhook", "script", "integration"],
-  "exclude_keywords": ["lead generation", "data entry", "linkedin", "virtual assistant", "video edit", "logo", "graphic design", "seo", "content writing", "email scrap", "followers", "instagram"]
+  "include_keywords": ["python", "javascript", "typescript", "node", "nodejs", "bot", "scraper", "scraping", "scrape", "crawler", "automation", "automate", "api", "webhook", "integration", "integrate", "script", "backend", "frontend", "full stack", "full-stack", "web app", "webapp", "website", "react", "next.js", "nextjs", "vue", "flask", "django", "fastapi", "selenium", "playwright", "puppeteer", "data extraction", "dashboard", "discord", "telegram", "excel automation", "google sheets", "parser"],
+  "exclude_keywords": ["3d", "blender", "animation", "render", "unity", "unreal", "game dev", "gamedev", "video edit", "after effects", "premiere", "photoshop", "illustrator", "logo", "branding", "graphic design", "figma", "ui/ux", "ux design", "lead generation", "data entry", "linkedin", "virtual assistant", "seo", "content writ", "copywriting", "article writ", "blog writ", "ghostwrit", "translation", "proofread", "social media manage", "followers", "instagram", "tiktok", "scrape email", "email list", "phone number", "usernames", "smart contract", "solidity", "blockchain", "web3", "nft", "forex", "trading signal"]
 }
