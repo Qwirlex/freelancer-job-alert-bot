@@ -57,13 +57,52 @@ def send_telegram(token, chat_id, text):
     ).raise_for_status()
 
 
+REPOS = {
+    "scraper": ("a monitoring bot that scrapes a source and sends instant alerts",
+                "https://github.com/Qwirlex/crypto-price-alert-bot"),
+    "api": ("a Flask service that connects APIs and forwards events between apps",
+            "https://github.com/Qwirlex/webhook-relay"),
+    "bot": ("a Telegram alert bot that watches a feed and pings on new matches",
+            "https://github.com/Qwirlex/crypto-price-alert-bot"),
+}
+
+KINDS = {
+    "scraper": "web scrapers",
+    "api": "API integrations and automations",
+    "bot": "bots and automations",
+}
+
+
+def detect_kind(blob):
+    if "scrap" in blob:
+        return "scraper"
+    if "api" in blob or "webhook" in blob or "integration" in blob:
+        return "api"
+    return "bot"
+
+
+def make_proposal(entry):
+    blob = (entry.get("title", "") + " " + entry.get("summary", "")).lower()
+    kind = detect_kind(blob)
+    line, repo = REPOS[kind]
+    proposal = (
+        f"Hi, this is a good fit for me. I build clean Python {KINDS[kind]} and can get this done "
+        f"with documented code and a short setup guide, so it is easy to run and hand over. "
+        f"I recently built {line}, which is close to what you need. I keep things simple, deliver fast, "
+        f"and stay in touch the whole way. You can see similar projects here: {repo}. "
+        f"Tell me your exact requirements and I will confirm the timeline and a fixed price."
+    )
+    return proposal[:1000]
+
+
 def format_alert(entry):
     title = entry.get("title", "Project")
     link = entry.get("link", "")
     summary = entry.get("summary", "").replace("\n", " ").strip()
-    if len(summary) > 220:
-        summary = summary[:220] + "..."
-    return f"\U0001F4BC <b>{title}</b>\n{summary}\n{link}"
+    if len(summary) > 200:
+        summary = summary[:200] + "..."
+    proposal = make_proposal(entry)
+    return f"\U0001F4BC <b>{title}</b>\n{summary}\n{link}\n\n\U0001F4DD <b>Proposal:</b>\n{proposal}"
 
 
 def main():
