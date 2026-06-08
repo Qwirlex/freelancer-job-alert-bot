@@ -66,11 +66,11 @@ OPENERS = [
 ]
 
 PITCH = {
-    "web": "For \"{title}\", I will build the web app with tidy, responsive code, wire up the parts you need, and keep the interface simple and quick.",
-    "scraper": "For \"{title}\", I will write a steady scraper that grabs exactly the data you want and exports it your way, with polite rate limits so it keeps running.",
-    "api": "For \"{title}\", I will connect the APIs and get the data moving between your tools, adding webhooks or scheduled jobs where they fit.",
-    "bot": "For \"{title}\", I will build the bot end to end, hook it up to Telegram or Discord, and keep the settings easy for you to change.",
-    "automation": "For \"{title}\", I will automate the repetitive part with a clean script that just runs, so you stop doing it by hand.",
+    "web": "For {title}, I will build the web app with tidy, responsive code, wire up the parts you need, and keep the interface simple and quick.",
+    "scraper": "For {title}, I will write a steady scraper that grabs exactly the data you want and exports it your way, with polite rate limits so it keeps running.",
+    "api": "For {title}, I will connect the APIs and get the data moving between your tools, adding webhooks or scheduled jobs where they fit.",
+    "bot": "For {title}, I will build the bot end to end, hook it up to Telegram or Discord, and keep the settings easy for you to change.",
+    "automation": "For {title}, I will automate the repetitive part with a clean script that just runs, so you stop doing it by hand.",
 }
 
 PROOF = {
